@@ -14,7 +14,9 @@ const initialContainerBackgroundClassNames = [
   'light-blue',
 ]
 
-const initialCommentsList = [{id: uuidv4(), name: '', comment: ''}]
+const initialCommentsList = [
+  {id: uuidv4(), firstLetter: '', name: '', isLikeToggle: false, comment: ''},
+]
 
 // Write your code here
 class Comments extends Component {
@@ -35,7 +37,7 @@ class Comments extends Component {
   }
 
   onAddComment = () => {
-    const {firstLetter, name, comment} = this.state
+    const {firstLetter, name, comment, commentsList} = this.state
     this.setState({firstLetter: name[0]})
     const newComment = {
       id: uuidv4(),
@@ -56,11 +58,18 @@ class Comments extends Component {
   }
 
   likedIcon = id => {
-    console.log('Icon clicked')
+    this.setState(prevState => ({
+      commentsList: prevState.commentsList.map(each => {
+        if (each.id === id) {
+          return {...each, isLikeToggle: !each.isLikeToggle}
+        }
+        return each
+      }),
+    }))
   }
 
   render() {
-    const {name, comment, commentsList} = this.state
+    const {commentsList} = this.state
 
     return (
       <div className="app-container">

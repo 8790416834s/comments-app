@@ -2,13 +2,17 @@ import './index.css'
 
 const CommentItem = props => {
   const {commentsList, likedIcon, deleteItem} = props
-  const {id, name, comment} = commentsList
+  const {id, firstLetter, name, isLikeToggle, comment} = commentsList
+
+  const starImg = isLikeToggle
+    ? 'https://assets.ccbp.in/frontend/react-js/comments-app/like-img.png'
+    : 'https://assets.ccbp.in/frontend/react-js/comments-app/like-img.png'
 
   const onDelete = () => {
     deleteItem(id)
   }
 
-  const isLikeToggle = () => {
+  const isLike = () => {
     likedIcon(id)
   }
 
@@ -16,7 +20,7 @@ const CommentItem = props => {
     <li className="list-container">
       <div className="item-container">
         <div className="first-letter">
-          <span className="letter">s</span>
+          <span className="letter">{firstLetter}</span>
         </div>
         <div>
           <p className="name-heading">{name}</p>
@@ -24,11 +28,7 @@ const CommentItem = props => {
         </div>
       </div>
       <div className="buttons-container">
-        <img
-          src="https://assets.ccbp.in/frontend/react-js/comments-app/like-img.png"
-          className="like-image"
-          onClick={isLikeToggle}
-        />
+        <img src={starImg} className="like-image" onClick={isLike} />
         <img
           src="https://assets.ccbp.in/frontend/react-js/comments-app/delete-img.png"
           alt="delete"
