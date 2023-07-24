@@ -1,0 +1,47 @@
+.amber {
+  background-color: #f59e0b;
+}
+
+.blue {
+  background-color: #0b69ff;
+}
+
+.orange {
+  background-color: #f97316;
+}
+
+.emerald {
+  background-color: #10b981;
+}
+
+.teal {
+  background-color: #14b8a6;
+}
+
+.red {
+  background-color: #b91c1c;
+}
+
+.light-blue {
+  background-color: #0ea5e9;
+}
+
+/* Write your CSS here */
+.list-container {
+}
+.item-container {
+  display: flex;
+}
+.first-letter {
+  padding: 10px;
+  margin-right: 10px;
+  height: 50px;
+  width: 50px;
+  background-color: #0b69ff;
+  border-radius: 45px;
+  color: #ffffff;
+}
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+}

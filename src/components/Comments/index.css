@@ -1,0 +1,39 @@
+.app-container {
+}
+.details-container {
+  display: flex;
+  justify-content: space-around;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.image {
+  height: 250px;
+  width: 250px;
+}
+.para {
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: bold;
+}
+.input-name {
+  margin-bottom: 20px;
+}
+.input-comment {
+  margin-bottom: 20px;
+}
+.add-button {
+  background-color: #0284c7;
+  color: #ffffff;
+}
+.count-container {
+  display: flex;
+  padding: 30px;
+}
+.count {
+  background-color: #0284c7;
+  color: #ffffff;
+  height: 25px;
+}
