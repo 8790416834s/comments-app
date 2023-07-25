@@ -45,3 +45,7 @@
   display: flex;
   justify-content: space-between;
 }
+.button {
+  background-color: transparent;
+  border-width: 0px;
+}

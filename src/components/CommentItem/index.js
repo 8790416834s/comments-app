@@ -6,7 +6,7 @@ const CommentItem = props => {
 
   const starImg = isLikeToggle
     ? 'https://assets.ccbp.in/frontend/react-js/comments-app/like-img.png'
-    : 'https://assets.ccbp.in/frontend/react-js/comments-app/like-img.png'
+    : 'https://assets.ccbp.in/frontend/react-js/comments-app/liked-img.png'
 
   const onDelete = () => {
     deleteItem(id)
@@ -28,13 +28,16 @@ const CommentItem = props => {
         </div>
       </div>
       <div className="buttons-container">
-        <img src={starImg} className="like-image" onClick={isLike} />
-        <img
-          src="https://assets.ccbp.in/frontend/react-js/comments-app/delete-img.png"
-          alt="delete"
-          className="delete-btn"
-          onClick={onDelete}
-        />
+        <button type="button" className="button" onClick={isLike}>
+          <img src={starImg} className="like-image" />
+        </button>
+        <button type="button" className="button" onClick={onDelete}>
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/comments-app/delete-img.png"
+            alt="delete"
+            className="delete-btn"
+          />
+        </button>
       </div>
     </li>
   )

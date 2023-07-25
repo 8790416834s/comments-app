@@ -15,17 +15,17 @@ const initialContainerBackgroundClassNames = [
 ]
 
 const initialCommentsList = [
-  {id: uuidv4(), firstLetter: '', name: '', isLikeToggle: false, comment: ''},
+  {id: uuidv4(), firstLetter: '', name: '', comment: '', isLikeToggle: false},
 ]
 
 // Write your code here
 class Comments extends Component {
   state = {
+    commentsList: initialCommentsList,
     firstLetter: '',
     name: '',
     comment: '',
     isLikeToggle: false,
-    commentsList: initialCommentsList,
   }
 
   onChangeName = event => {
@@ -37,24 +37,25 @@ class Comments extends Component {
   }
 
   onAddComment = () => {
-    const {firstLetter, name, comment, commentsList} = this.state
+    const {firstLetter, name, comment, isLikeToggle, commentsList} = this.state
     this.setState({firstLetter: name[0]})
     const newComment = {
       id: uuidv4(),
       firstLetter,
       name,
       comment,
+      isLikeToggle,
     }
     const updatedComment = [...commentsList, newComment]
-    this.setState(prevState => ({
-      commentsList: [...prevState.commentsList, updatedComment],
-    }))
+    this.setState({commentsList: updatedComment})
   }
 
   deleteItem = id => {
     const {commentsList} = this.state
     const filteredList = commentsList.filter(each => each.id === id)
-    this.setState({commentsList: filteredList})
+    this.setState({
+      commentsList: filteredList,
+    })
   }
 
   likedIcon = id => {
@@ -75,9 +76,9 @@ class Comments extends Component {
       <div className="app-container">
         <div className="details-container">
           <div className="input-container">
-            <h1 className="title">Comments</h1>
-            <p className="para">Say something about 4.0 Technologies</p>
-            <form className="form-container" onSubmit="onAddComment">
+            <form className="form-container" onSubmit={this.onAddComment}>
+              <h1 className="title">Comments</h1>
+              <p className="para">Say something about 4.0 Technologies</p>
               <input
                 type="text"
                 placeholder="Your Name"
@@ -90,11 +91,7 @@ class Comments extends Component {
                 className="input-comment"
                 onChange={this.onChangeComment}
               />
-              <button
-                type="button"
-                className="add-button"
-                onClick={this.onAddComment}
-              >
+              <button type="submit" className="add-button">
                 Add Comment
               </button>
             </form>
@@ -108,7 +105,7 @@ class Comments extends Component {
             />
           </div>
         </div>
-        <hr className="separator" />
+        <hr />
         <div className="count-container">
           <div>
             <button type="button" className="count">
