@@ -11,6 +11,10 @@
   flex-direction: column;
   justify-content: flex-start;
 }
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
 .image {
   height: 250px;
   width: 250px;

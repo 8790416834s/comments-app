@@ -26,6 +26,7 @@ class Comments extends Component {
     name: '',
     comment: '',
     isLikeToggle: false,
+    count: 0,
   }
 
   onChangeName = event => {
@@ -36,7 +37,8 @@ class Comments extends Component {
     this.setState({comment: event.target.value})
   }
 
-  onAddComment = () => {
+  onAddComment = event => {
+    event.preventDefault()
     const {firstLetter, name, comment, isLikeToggle, commentsList} = this.state
     this.setState({firstLetter: name[0]})
     const newComment = {
@@ -48,14 +50,16 @@ class Comments extends Component {
     }
     const updatedComment = [...commentsList, newComment]
     this.setState({commentsList: updatedComment})
+    this.setState(prevState => ({count: prevState.count + 1}))
   }
 
   deleteItem = id => {
     const {commentsList} = this.state
-    const filteredList = commentsList.filter(each => each.id === id)
+    const filteredList = commentsList.filter(each => each.id !== id)
     this.setState({
       commentsList: filteredList,
     })
+    this.setState(prevState => ({count: prevState.count - 1}))
   }
 
   likedIcon = id => {
@@ -70,7 +74,7 @@ class Comments extends Component {
   }
 
   render() {
-    const {commentsList} = this.state
+    const {commentsList, count} = this.state
 
     return (
       <div className="app-container">
@@ -109,7 +113,7 @@ class Comments extends Component {
         <div className="count-container">
           <div>
             <button type="button" className="count">
-              0
+              {count}
             </button>
           </div>
           <p>Comments</p>
@@ -121,6 +125,9 @@ class Comments extends Component {
               commentsList={each}
               deleteItem={this.deleteItem}
               likedIcon={this.likedIcon}
+              initialContainerBackgroundClassNames={
+                this.initialContainerBackgroundClassNames
+              }
             />
           ))}
         </ul>
